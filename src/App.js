@@ -15,20 +15,13 @@ function App() {
       transition-colors duration-300
     ">
       <Navbar />
-      <section className="nap-start"><Hero /></section>
-      <section className="snap-start"><About /></section>
-      <section className="snap-start"><Skills /></section>
-      <section className="snap-start"><Services /></section>
-      <section className="snap-start"><Projects /></section>
-      <section className="snap-start"><Contact /></section>
-      <Footer />
-      {/* <Hero />
+      <Hero />
       <About />
       <Skills />
       <Services />
       <Projects />
       <Contact />
-      <Footer /> */}
+      <Footer />
     </div>
   );
 }

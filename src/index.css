@@ -48,14 +48,6 @@ body {
   }
 }
 
-.scroll-container {
-  scroll-behavior: smooth;
-}
-
-section {
-  scroll-snap-stop: always;
-}
-
 .animate-slide-fade {
   animation: slideFade 0.8s ease-out both;
 }
