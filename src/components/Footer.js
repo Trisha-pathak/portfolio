@@ -9,19 +9,19 @@ export default function Footer() {
 
         <div className="flex gap-4">
           <a
-            href="#"
+            href="https://github.com/Trisha-pathak"
             className="text-#DFD0B8-400 hover:text-accent1 transition"
           >
             GitHub
           </a>
           <a
-            href="#"
+            href="https://www.linkedin.com/in/trisha-pathak-b388641b2"
             className="text-#DFD0B8-400 hover:text-accent1 transition"
           >
             LinkedIn
           </a>
           <a
-            href="#"
+            href="https://twitter.com/TrishaPathak15"
             className="text-#DFD0B8-400 hover:text-accent1 transition"
           >
             Twitter
