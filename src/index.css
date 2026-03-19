@@ -1,13 +1,357 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+button svg {
+  transition: filter 0.4s ease;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+button:hover svg {
+  filter: drop-shadow(0 0 8px currentColor);
+}
+
+/* LIGHT MODE */
+:root {
+  --bg: 223 208 184;     /* #DFD0B8 */
+  --text: 34 40 49;     /* #222831 */
+}
+
+/* DARK MODE */
+.dark {
+  --bg: 34 40 49;       /* #222831 */
+  --text: 223 208 184;  /* #DFD0B8 */
+}
+
+/* Smooth theme transition */
+/* Global smooth transitions */
+* {
+  transition:
+    background-color 0.45s ease,
+    color 0.45s ease,
+    border-color 0.45s ease,
+    box-shadow 0.45s ease;
+}
+
+body {
+  @apply bg-bg text-text;
+}
+
+@keyframes slideFade {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.scroll-container {
+  scroll-behavior: smooth;
+}
+
+section {
+  scroll-snap-stop: always;
+}
+
+.animate-slide-fade {
+  animation: slideFade 0.8s ease-out both;
+}
+
+@keyframes underline {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Container */
+.flip-icon {
+  perspective: 1000px;
+}
+
+.flip-icon-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  transform-style: preserve-3d;
+
+  /* Continuous flip */
+  animation: flipY 2.8s linear infinite;
+}
+
+/* Hover → pause + front-facing */
+.flip-icon:hover .flip-icon-inner {
+  animation-play-state: paused;
+  transform: rotateY(0deg);
+}
+
+.flip-front,
+.flip-back {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  backface-visibility: hidden;
+}
+
+.flip-back {
+  transform: rotateY(180deg);
+}
+
+/* Keyframes */
+@keyframes flipY {
+  0% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(180deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+
+.flip-icon-inner {
+  animation: flipY 3.5s ease-in-out infinite;
+}
+
+/* Image entrance animation */
+@keyframes imageReveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.9) translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-image {
+  animation: imageReveal 1.5s ease-out forwards;
+}
+
+@keyframes slow-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rotate-ring {
+  animation: slow-spin 18s linear infinite;
+}
+
+/* ------------------------------
+   Swiper Theme Customization
+-------------------------------- */
+
+/* Hide arrows by default */
+.project-swiper .swiper-button-prev,
+.project-swiper .swiper-button-next {
+  color: #9ca3af; /* gray-400 */
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+/* Show arrows on card hover */
+.group:hover .swiper-button-prev,
+.group:hover .swiper-button-next {
+  opacity: 1;
+}
+
+/* Arrow size */
+.project-swiper .swiper-button-prev,
+.project-swiper .swiper-button-next {
+  width: 20px;
+  height: 25px;
+  font-weight: 800;
+  color: #e5e7eb; /* gray-200 */
+}
+
+/* Reduce icon size */
+.project-swiper .swiper-button-prev::after,
+.project-swiper .swiper-button-next::after {
+  font-size: 12px;
+  font-weight: 800;
+}
+
+/* Pagination dots */
+.project-swiper .swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.25);
+  opacity: 1;
+}
+
+/* Active dot (accent color) */
+.project-swiper .swiper-pagination-bullet-active {
+  background: var(--accent1, white); /* fallback green */
+}
+
+/* Slight lift for dots */
+.project-swiper .swiper-pagination {
+  bottom: 6px !important;
+}
+
+@media (max-width: 768px) {
+  .project-swiper .swiper-button-prev,
+  .project-swiper .swiper-button-next {
+    display: none;
+  }
+}
+
+/* Resume*/
+
+.resume-page {
+  width: 794px;           /* A4 width */
+  min-height: 1123px;
+  margin: auto;
+  padding: 40px;
+  background: #fff;
+  color: #000;
+  font-family: "Times New Roman", serif;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.name {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+/* TWO COLUMN GRID */
+.resume-grid {
+  display: grid;
+  grid-template-columns: 70% 30%;
+  column-gap: 30px;
+}
+
+section {
+  margin-bottom: 22px;
+}
+
+.resume-grid h2 {
+  font-size: 15px;
+  font-weight: bold;
+  color: #0b63ce; /* blue heading like PDF */
+  margin-bottom: 8px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.italic {
+  font-style: italic;
+}
+
+ul {
+  margin-left: 18px;
+}
+
+.bullet-list {
+  list-style-type: disc;
+  padding-left: 10px;
+}
+
+.link {
+  color: #0b63ce;
+  text-decoration: underline;
+}
+
+.declaration-full {
+  margin-top: 50px;
+  font-size: 14px;
+  width: 100%;
+}
+
+.declaration-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 30px;
+}
+
+.signature {
+  text-align: center;
+  min-width: 200px;
+}
+
+.signature .line {
+  border-bottom: 1px solid #000;
+  margin-top: 6px;
+}
+
+@media print {
+  /* Remove browser headers/footers */
+  @page {
+    size: A4;
+    margin: 12mm;
+  }
+
+  /* Hide everything except resume */
+  body * {
+    visibility: hidden;
+  }
+
+  #resume-print,
+  #resume-print * {
+    visibility: visible;
+  }
+
+  /* Reset positioning */
+  #resume-print {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+  }
+
+  /* Kill dark backgrounds & effects */
+  .bg-black,
+  .bg-#0f0f0f,
+  .backdrop-blur-md {
+    background: transparent !important;
+  }
+
+  /* Remove modal buttons */
+  button {
+    display: none !important;
+  }
+}
+
+.resume-page {
+  width: 210mm;          /* Exact A4 width */
+  min-height: 297mm;     /* Exact A4 height */
+  padding: 12mm 14mm;   /* 🔥 reduced left-right margins */
+  margin: 0 auto;
+  background: #ffffff;
+  color: #000;
+  box-sizing: border-box;
+}
+
+/* Prevent content from splitting across pages */
+.no-break {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.project-desc {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+/* General safety */
+p, h2, h3 {
+  break-inside: avoid;
+  page-break-inside: avoid;
 }
